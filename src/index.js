@@ -1,14 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import MainHeading from "./components/Main";
+import Title from "./components/Title";
 
-const mainHeading = React.createElement(
-  "ol",
-  null,
-  Array(1, 2, 3).map((index) =>
-    React.createElement("li", { key: index }, `Item ${index}`)
-  )
+const App = (
+  <div>
+    <Title></Title>
+    <MainHeading></MainHeading>
+  </div>
 );
 
 ReactDOM.createRoot(document.getElementById("root") ?? document.body).render(
-  mainHeading
+  App
 );
