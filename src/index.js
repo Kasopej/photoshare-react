@@ -1,12 +1,11 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
-import MainHeading from "./components/Main";
+import Organizer from "./components/Organizer";
 import Title from "./components/Title";
 
 const App = (
   <div>
     <Title></Title>
-    <MainHeading></MainHeading>
+    <Organizer></Organizer>
   </div>
 );
 
