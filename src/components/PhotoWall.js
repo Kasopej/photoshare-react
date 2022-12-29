@@ -5,7 +5,7 @@ class PhotoWall extends Component {
   render() {
     const { photos } = this.props;
     return (
-      <section>
+      <section className="photoGrid">
         {photos.map((photo, index) => (
           <Photo photo={photo} key={index}></Photo>
         ))}
