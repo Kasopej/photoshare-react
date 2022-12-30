@@ -28,6 +28,8 @@ export default class MainApp extends Component {
         },
       ],
     };
+    this.removePost = this.removePost.bind(this);
+    this.addPost = this.addPost.bind(this);
   }
   addPost(post) {
     this.state.posts.push(post);
@@ -35,11 +37,19 @@ export default class MainApp extends Component {
       posts: this.state.posts,
     });
   }
+  removePost(selectedPost) {
+    this.setState((state) => ({
+      posts: state.posts.filter((post) => post.id !== selectedPost.id),
+    }));
+  }
   render() {
     return (
       <main>
         <Title title="PhotoWall"></Title>
-        <PhotoWall photos={this.state.posts}></PhotoWall>
+        <PhotoWall
+          photos={this.state.posts}
+          removePost={this.removePost}
+        ></PhotoWall>
       </main>
     );
   }
