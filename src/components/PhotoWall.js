@@ -1,4 +1,5 @@
 import Photo from "./Photo";
+import PropTypes from "prop-types";
 
 function PhotoWall(props) {
   const { photos, removePost } = props;
@@ -11,4 +12,8 @@ function PhotoWall(props) {
   );
 }
 
+PhotoWall.propTypes = {
+  photos: PropTypes.array.isRequired,
+  removePost: PropTypes.func.isRequired,
+};
 export default PhotoWall;
