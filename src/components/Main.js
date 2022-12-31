@@ -12,7 +12,7 @@ export default class MainApp extends Component {
     this.removePost = this.removePost.bind(this);
     this.addPost = this.addPost.bind(this);
   }
-  componentWillMount(nextProps, nextState) {
+  UNSAFE_componentWillMount(nextProps, nextState) {
     console.log("before mount", { nextProps, nextState });
   }
   componentDidMount(prevProps, prevState) {
@@ -23,7 +23,7 @@ export default class MainApp extends Component {
       });
     }, 1500);
   }
-  componentWillUpdate(nextProps, nextState) {
+  UNSAFE_componentWillUpdate(nextProps, nextState) {
     console.log("before update", { nextProps, nextState });
   }
   componentDidUpdate(prevProps, prevState) {
