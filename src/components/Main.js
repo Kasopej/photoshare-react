@@ -1,6 +1,7 @@
 import { Component } from "react";
 import Title from "./Title";
 import PhotoWall from "./PhotoWall";
+import AddPhoto from "./AddPhoto";
 
 export default class MainApp extends Component {
   constructor(props) {
@@ -8,9 +9,11 @@ export default class MainApp extends Component {
     console.log("create");
     this.state = {
       posts: [],
+      page: "viewPhotos",
     };
     this.removePost = this.removePost.bind(this);
     this.addPost = this.addPost.bind(this);
+    this.changePage = this.changePage.bind(this);
   }
   UNSAFE_componentWillMount(nextProps, nextState) {
     console.log("before mount", { nextProps, nextState });
@@ -32,6 +35,11 @@ export default class MainApp extends Component {
   componentWillUnmount(nextProps, nextState) {
     console.log("destroying", { nextProps, nextState });
   }
+  changePage() {
+    this.setState({
+      page: "addPhoto",
+    });
+  }
   addPost(post) {
     this.state.posts.push(post);
     this.setState({
@@ -46,13 +54,19 @@ export default class MainApp extends Component {
   render() {
     console.log("render");
     return (
-      <main>
-        <Title title="PhotoWall"></Title>
-        <PhotoWall
-          photos={this.state.posts}
-          removePost={this.removePost}
-        ></PhotoWall>
-      </main>
+      <div>
+        {this.state.page === "viewPhotos" && (
+          <main>
+            <Title title="PhotoWall"></Title>
+            <PhotoWall
+              photos={this.state.posts}
+              removePost={this.removePost}
+              changePage={this.changePage}
+            ></PhotoWall>
+          </main>
+        )}
+        {this.state.page === "addPhoto" && <AddPhoto></AddPhoto>}
+      </div>
     );
   }
 }

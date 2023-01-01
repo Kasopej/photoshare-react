@@ -110,8 +110,7 @@ body {
   resize: vertical;
 }
 .addIcon {
-  background: url("https://image.flaticon.com/icons/svg/60/60740.svg") center
-    no-repeat;
+  background: url("../img/icons-plus-64.png") center no-repeat;
   background-size: contain;
   padding: 40px;
   display: table;
@@ -138,6 +137,7 @@ button,
   color: red;
   transition: all 0.2s;
   box-sizing: padding-box;
+  cursor: pointer;
 }
 button:hover,
 .button:hover,
