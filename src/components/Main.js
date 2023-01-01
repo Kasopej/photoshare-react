@@ -2,6 +2,7 @@ import { Component } from "react";
 import Title from "./Title";
 import PhotoWall from "./PhotoWall";
 import AddPhoto from "./AddPhoto";
+import { Route, Routes } from "react-router-dom";
 
 export default class MainApp extends Component {
   constructor(props) {
@@ -9,14 +10,9 @@ export default class MainApp extends Component {
     console.log("create");
     this.state = {
       posts: [],
-      page: "viewPhotos",
     };
     this.removePost = this.removePost.bind(this);
     this.addPost = this.addPost.bind(this);
-    this.changePage = this.changePage.bind(this);
-  }
-  UNSAFE_componentWillMount(nextProps, nextState) {
-    console.log("before mount", { nextProps, nextState });
   }
   componentDidMount(prevProps, prevState) {
     console.log("mount", { prevProps, prevState });
@@ -26,19 +22,11 @@ export default class MainApp extends Component {
       });
     }, 1500);
   }
-  UNSAFE_componentWillUpdate(nextProps, nextState) {
-    console.log("before update", { nextProps, nextState });
-  }
   componentDidUpdate(prevProps, prevState) {
     console.log("updated", { prevProps, prevState });
   }
   componentWillUnmount(nextProps, nextState) {
     console.log("destroying", { nextProps, nextState });
-  }
-  changePage() {
-    this.setState({
-      page: "addPhoto",
-    });
   }
   addPost(post) {
     this.state.posts.push(post);
@@ -54,19 +42,27 @@ export default class MainApp extends Component {
   render() {
     console.log("render");
     return (
-      <div>
-        {this.state.page === "viewPhotos" && (
-          <main>
-            <Title title="PhotoWall"></Title>
-            <PhotoWall
-              photos={this.state.posts}
-              removePost={this.removePost}
-              changePage={this.changePage}
-            ></PhotoWall>
-          </main>
-        )}
-        {this.state.page === "addPhoto" && <AddPhoto></AddPhoto>}
-      </div>
+      <Routes>
+        <Route
+          path="/"
+          element={(() => (
+            <div>
+              <Title title="PhotoWall"></Title>
+              <PhotoWall
+                photos={this.state.posts}
+                removePost={this.removePost}
+              ></PhotoWall>
+            </div>
+          ))()}
+        ></Route>
+
+        <Route
+          path="/addphoto"
+          element={(() => (
+            <AddPhoto></AddPhoto>
+          ))()}
+        ></Route>
+      </Routes>
     );
   }
 }
