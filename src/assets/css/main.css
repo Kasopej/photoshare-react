@@ -125,7 +125,7 @@ body {
 }
 button,
 .button {
-  border: 2px solid #f2f2f2;
+  border: solid 2px #f2f2f2;
   background: none;
   flex-basis: 48%;
   display: inline-block;

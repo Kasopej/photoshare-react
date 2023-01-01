@@ -29,9 +29,11 @@ export default class MainApp extends Component {
     console.log("destroying", { nextProps, nextState });
   }
   addPost(post) {
-    this.state.posts.push(post);
-    this.setState({
-      posts: this.state.posts,
+    console.log("adding photo");
+    this.setState((prevState, prevProps) => {
+      post.id = String(prevState.posts[prevState.posts.length - 1].id + 1);
+      prevState.posts.push(post);
+      return { posts: prevState.posts };
     });
   }
   removePost(selectedPost) {
@@ -59,7 +61,7 @@ export default class MainApp extends Component {
         <Route
           path="/addphoto"
           element={(() => (
-            <AddPhoto></AddPhoto>
+            <AddPhoto addPhoto={this.addPost}></AddPhoto>
           ))()}
         ></Route>
       </Routes>
