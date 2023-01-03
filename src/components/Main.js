@@ -3,17 +3,10 @@ import Title from "./Title";
 import PhotoWall from "./PhotoWall";
 import AddPhoto from "./AddPhoto";
 import { Route, Routes } from "react-router-dom";
+import { connect } from "react-redux";
+import { PostsStateToProps } from "../redux/utils";
 
-export default class MainApp extends Component {
-  constructor(props) {
-    super(props);
-    console.log("create");
-    this.state = {
-      posts: [],
-    };
-    this.removePost = this.removePost.bind(this);
-    this.addPost = this.addPost.bind(this);
-  }
+class MainApp extends Component {
   componentDidMount(prevProps, prevState) {
     console.log("mount", { prevProps, prevState });
     setTimeout(async () => {
@@ -28,19 +21,6 @@ export default class MainApp extends Component {
   componentWillUnmount(nextProps, nextState) {
     console.log("destroying", { nextProps, nextState });
   }
-  addPost(post) {
-    console.log("adding photo");
-    this.setState((prevState, prevProps) => {
-      post.id = String(new Date().valueOf());
-      prevState.posts.push(post);
-      return { posts: prevState.posts };
-    });
-  }
-  removePost(selectedPost) {
-    this.setState((state) => ({
-      posts: state.posts.filter((post) => post.id !== selectedPost.id),
-    }));
-  }
   render() {
     console.log("render");
     return (
@@ -51,7 +31,7 @@ export default class MainApp extends Component {
             <div>
               <Title title="PhotoWall"></Title>
               <PhotoWall
-                photos={this.state.posts}
+                photos={this.props.posts}
                 removePost={this.removePost}
               ></PhotoWall>
             </div>
@@ -68,6 +48,8 @@ export default class MainApp extends Component {
     );
   }
 }
+
+export default connect(PostsStateToProps)(MainApp);
 
 function getPhotos() {
   return Promise.resolve([
