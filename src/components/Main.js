@@ -31,7 +31,7 @@ export default class MainApp extends Component {
   addPost(post) {
     console.log("adding photo");
     this.setState((prevState, prevProps) => {
-      post.id = String(prevState.posts[prevState.posts.length - 1].id + 1);
+      post.id = String(new Date().valueOf());
       prevState.posts.push(post);
       return { posts: prevState.posts };
     });
