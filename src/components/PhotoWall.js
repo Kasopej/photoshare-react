@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 function PhotoWall(props) {
-  const { photos, removePost } = props;
+  const { photos } = props;
   return (
     <div>
       <Link className="addIcon" to="/addphoto"></Link>

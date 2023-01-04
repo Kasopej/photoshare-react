@@ -6,7 +6,8 @@ function postsReducer(state = posts, action) {
     case "ADD_POST":
       console.log({ action_index: action.index });
       break;
-
+    case "REMOVE_POST":
+      return state.filter((post) => post.id !== action.index);
     default:
       break;
   }

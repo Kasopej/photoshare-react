@@ -4,3 +4,10 @@ export function addPost(index) {
     index,
   };
 }
+
+export function removePost(index) {
+  return {
+    type: "REMOVE_POST",
+    index,
+  };
+}
