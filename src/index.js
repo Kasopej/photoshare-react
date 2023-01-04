@@ -3,7 +3,7 @@ import MainApp from "./components/Main";
 import "./assets/css/main.css";
 import { BrowserRouter } from "react-router-dom";
 import { legacy_createStore as createStore } from "redux";
-import { Provider, connect } from "react-redux";
+import { Provider } from "react-redux";
 import rootReducer from "./redux/reducer";
 
 const store = createStore(rootReducer);

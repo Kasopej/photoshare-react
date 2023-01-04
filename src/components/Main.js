@@ -25,10 +25,7 @@ class MainApp extends Component {
           element={(() => (
             <div>
               <Title title="PhotoWall"></Title>
-              <PhotoWall
-                photos={this.props.posts}
-                removePost={this.removePost}
-              ></PhotoWall>
+              <PhotoWall photos={this.props.posts}></PhotoWall>
             </div>
           ))()}
         ></Route>

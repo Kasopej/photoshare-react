@@ -1,9 +1,12 @@
 import { Component } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { addPost } from "../redux/actions";
 
-export default class Photo extends Component {
+class Photo extends Component {
   render() {
-    const { photo, removePost } = this.props;
+    const { photo, addPost } = this.props;
+    addPost(1);
     return (
       <figure className="figure">
         <img
@@ -15,7 +18,7 @@ export default class Photo extends Component {
           <p>{photo.description}</p>
         </figcaption>
         <div className="button-container">
-          <button className="remove-button" onClick={() => removePost(photo)}>
+          <button className="remove-button" onClick={() => null}>
             Remove
           </button>
         </div>
@@ -26,3 +29,8 @@ export default class Photo extends Component {
 Photo.propTypes = {
   photo: PropTypes.object.isRequired,
 };
+
+const mapDispatchToProps = {
+  addPost,
+};
+export default connect(null, mapDispatchToProps)(Photo);
