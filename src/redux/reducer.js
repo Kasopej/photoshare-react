@@ -4,8 +4,8 @@ import posts from "../data/posts";
 function postsReducer(state = posts, action) {
   switch (action.type) {
     case "ADD_POST":
-      console.log({ action_index: action.index });
-      break;
+      action.post.id = String(new Date().valueOf());
+      return [...state, action.post];
     case "REMOVE_POST":
       return state.filter((post) => post.id !== action.index);
     default:

@@ -2,7 +2,7 @@ import { Component } from "react";
 import Title from "./Title";
 import PhotoWall from "./PhotoWall";
 import AddPhoto from "./AddPhoto";
-import { Route, Routes } from "react-router-dom";
+import { Link, Outlet, Route, Routes } from "react-router-dom";
 import { connect } from "react-redux";
 import { PostsStateToProps } from "../redux/utils";
 
@@ -24,18 +24,24 @@ class MainApp extends Component {
           path="/"
           element={(() => (
             <div>
-              <Title title="PhotoWall"></Title>
-              <PhotoWall photos={this.props.posts}></PhotoWall>
+              <h1>
+                <Link to="/">PhotoWall</Link>
+              </h1>
+              <Outlet></Outlet>
             </div>
           ))()}
-        ></Route>
+        >
+          <Route
+            index
+            element={(() => (
+              <div>
+                <PhotoWall photos={this.props.posts}></PhotoWall>
+              </div>
+            ))()}
+          ></Route>
 
-        <Route
-          path="/addphoto"
-          element={(() => (
-            <AddPhoto addPhoto={this.addPost}></AddPhoto>
-          ))()}
-        ></Route>
+          <Route path="/addphoto" element={<AddPhoto></AddPhoto>}></Route>
+        </Route>
       </Routes>
     );
   }

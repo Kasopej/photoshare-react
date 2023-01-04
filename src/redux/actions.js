@@ -1,7 +1,7 @@
-export function addPost(index) {
+export function addPost(post) {
   return {
     type: "ADD_POST",
-    index,
+    post,
   };
 }
 
