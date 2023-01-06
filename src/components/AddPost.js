@@ -16,6 +16,8 @@ class AddPhoto extends Component {
         description: event.target.elements.description.value,
       })
     );
+    event.target.elements.link.value = null;
+    event.target.elements.description.value = null;
   }
   render() {
     return (
