@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import posts from "../data/posts";
 
-function postsReducer(state = posts, action) {
+function postsReducer(state = [], action) {
   switch (action.type) {
+    case "FETCH_POSTS":
+      return [...action.posts];
     case "ADD_POST":
-      action.post.id = String(new Date().valueOf());
       return [...state, action.post];
     case "REMOVE_POST":
       return state.filter((post) => post.id !== action.index);

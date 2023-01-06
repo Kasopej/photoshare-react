@@ -1,7 +1,7 @@
 import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addPost } from "../redux/actions";
+import { startAddingPost } from "../redux/actions";
 import withNavigationHOC from "./utilities/WithNavigationHOC";
 
 class AddPhoto extends Component {
@@ -10,8 +10,8 @@ class AddPhoto extends Component {
     event.preventDefault();
     const { dispatch } = this.props;
     dispatch(
-      addPost({
-        id: null,
+      startAddingPost({
+        id: String(new Date().valueOf()),
         imageLink: event.target.elements.link.value,
         description: event.target.elements.description.value,
       })
