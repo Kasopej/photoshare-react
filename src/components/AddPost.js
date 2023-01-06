@@ -1,12 +1,8 @@
 import { Component } from "react";
 import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { addPost } from "../redux/actions";
-
-export const withNavigation = (Component) => {
-  return (props) => <Component {...props} navigate={useNavigate()} />;
-};
+import withNavigationHOC from "./utilities/WithNavigationHOC";
 
 class AddPhoto extends Component {
   state = {};
@@ -36,4 +32,4 @@ class AddPhoto extends Component {
   }
 }
 
-export default withNavigation(connect(null)(AddPhoto));
+export default withNavigationHOC(connect(null)(AddPhoto));
