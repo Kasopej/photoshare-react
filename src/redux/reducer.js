@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-
 import posts from "../data/posts";
+
 function postsReducer(state = posts, action) {
   switch (action.type) {
     case "ADD_POST":
@@ -14,8 +14,22 @@ function postsReducer(state = posts, action) {
   return state;
 }
 
+function commentsReducer(state = [], action) {
+  switch (action.type) {
+    case "MAKE_POST":
+      return {
+        ...state,
+        [action.postId]: [...(state[action.postId] ?? []), action.comment],
+      };
+
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
   posts: postsReducer,
+  comments: commentsReducer,
 });
 
 export default rootReducer;

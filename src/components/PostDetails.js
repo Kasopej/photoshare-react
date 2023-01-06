@@ -9,7 +9,7 @@ export default function PostDetails(props) {
   return (
     <div className="single-photo">
       <Post post={post}></Post>
-      <Comments></Comments>
+      <Comments postId={params.id}></Comments>
     </div>
   );
 }

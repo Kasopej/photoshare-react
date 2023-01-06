@@ -11,3 +11,11 @@ export function removePost(index) {
     index,
   };
 }
+
+export function makePost(comment, postId) {
+  return {
+    type: "MAKE_POST",
+    comment,
+    postId,
+  };
+}
