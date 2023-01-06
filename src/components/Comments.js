@@ -27,4 +27,5 @@ function submitComment(evt, postId, dispatch) {
   const comment = evt.target.elements.comment.value;
   if (!comment) return;
   dispatch(makePost(comment, postId));
+  evt.target.elements.comment.value = null;
 }
