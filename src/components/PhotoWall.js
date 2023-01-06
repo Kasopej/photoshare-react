@@ -1,4 +1,4 @@
-import Photo from "./Photo";
+import Post from "./Post";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
@@ -6,12 +6,12 @@ function PhotoWall(props) {
   const { photos } = props;
   return (
     <div>
-      <Link className="addIcon" to="/addphoto"></Link>
+      <Link className="addIcon" to="/addpost"></Link>
       <section className="photoGrid">
         {photos
           .sort((a, b) => b.id - a.id)
           .map((photo) => (
-            <Photo photo={photo} key={photo.id}></Photo>
+            <Post photo={photo} key={photo.id}></Post>
           ))}
       </section>
     </div>

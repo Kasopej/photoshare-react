@@ -1,7 +1,7 @@
 import { Component } from "react";
-import Title from "./Title";
 import PhotoWall from "./PhotoWall";
-import AddPhoto from "./AddPhoto";
+import AddPost from "./AddPost";
+import PostDetails from "./PostDetails";
 import { Link, Outlet, Route, Routes } from "react-router-dom";
 import { connect } from "react-redux";
 import { PostsStateToProps } from "../redux/utils";
@@ -40,7 +40,8 @@ class MainApp extends Component {
             ))()}
           ></Route>
 
-          <Route path="/addphoto" element={<AddPhoto></AddPhoto>}></Route>
+          <Route path="/addpost" element={<AddPost></AddPost>}></Route>
+          <Route path="/viewpost" element={<PostDetails></PostDetails>}></Route>
         </Route>
       </Routes>
     );
