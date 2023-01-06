@@ -41,7 +41,10 @@ class MainApp extends Component {
           ></Route>
 
           <Route path="/addpost" element={<AddPost></AddPost>}></Route>
-          <Route path="/viewpost" element={<PostDetails></PostDetails>}></Route>
+          <Route
+            path="/viewpost/:id"
+            element={<PostDetails></PostDetails>}
+          ></Route>
         </Route>
       </Routes>
     );

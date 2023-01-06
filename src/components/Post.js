@@ -9,7 +9,7 @@ class Photo extends Component {
     const { photo, dispatch } = this.props;
     return (
       <figure className="figure">
-        <Link to={"viewpost"}>
+        <Link to={`viewpost/${photo.id}`}>
           <img
             className="photo"
             src={photo.imageLink}
