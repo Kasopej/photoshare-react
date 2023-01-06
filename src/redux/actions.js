@@ -1,5 +1,6 @@
-import { database, ref, update, onValue } from "../firebase_config";
+import { database, ref, update, onValue, off } from "../firebase_config";
 
+const postsFirebaseReference = ref(database, "posts/");
 export function startAddingPost(post) {
   return (dispatch) => {
     return update(ref(database, "posts/" + post.id), post).then(() => {
@@ -10,8 +11,9 @@ export function startAddingPost(post) {
 
 export function startFetchingPosts() {
   return (dispatch) => {
-    return onValue(ref(database, "posts/"), (snapshot) => {
+    const cancelPostsListener = onValue(postsFirebaseReference, (snapshot) => {
       dispatch(fetchPost(Object.values(snapshot.val())));
+      cancelPostsListener();
     });
   };
 }
