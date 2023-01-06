@@ -17,6 +17,7 @@ class MainApp extends Component {
     console.log("destroying", { nextProps, nextState });
   }
   render() {
+    const { posts } = this.props;
     console.log("render");
     return (
       <Routes>
@@ -35,7 +36,7 @@ class MainApp extends Component {
             index
             element={(() => (
               <div>
-                <PhotoWall photos={this.props.posts}></PhotoWall>
+                <PhotoWall posts={posts}></PhotoWall>
               </div>
             ))()}
           ></Route>
@@ -43,7 +44,7 @@ class MainApp extends Component {
           <Route path="/addpost" element={<AddPost></AddPost>}></Route>
           <Route
             path="/viewpost/:id"
-            element={<PostDetails></PostDetails>}
+            element={<PostDetails posts={posts}></PostDetails>}
           ></Route>
         </Route>
       </Routes>

@@ -4,25 +4,25 @@ import { connect } from "react-redux";
 import { removePost } from "../redux/actions";
 import { Link } from "react-router-dom";
 
-class Photo extends Component {
+class Post extends Component {
   render() {
-    const { photo, dispatch } = this.props;
+    const { post, dispatch } = this.props;
     return (
       <figure className="figure">
-        <Link to={`viewpost/${photo.id}`}>
+        <Link to={`viewpost/${post.id}`}>
           <img
             className="photo"
-            src={photo.imageLink}
-            alt={photo.description}
+            src={post.imageLink}
+            alt={post.description}
           ></img>
         </Link>
         <figcaption>
-          <p>{photo.description}</p>
+          <p>{post.description}</p>
         </figcaption>
         <div className="button-container">
           <button
             className="remove-button"
-            onClick={() => dispatch(removePost(photo.id))}
+            onClick={() => dispatch(removePost(post.id))}
           >
             Remove
           </button>
@@ -31,8 +31,8 @@ class Photo extends Component {
     );
   }
 }
-Photo.propTypes = {
-  photo: PropTypes.object.isRequired,
+Post.propTypes = {
+  post: PropTypes.object.isRequired,
 };
 
-export default connect(null)(Photo);
+export default connect(null)(Post);
