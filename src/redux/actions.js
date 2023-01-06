@@ -1,4 +1,4 @@
-import { database, ref, update, onValue, off } from "../firebase_config";
+import { database, ref, update, onValue } from "../firebase_config";
 
 const postsFirebaseReference = ref(database, "posts/");
 export function startAddingPost(post) {

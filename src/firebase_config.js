@@ -7,9 +7,8 @@ import {
   set,
   update,
   onValue,
-  off,
 } from "firebase/database";
-export { ref, child, set, update, onValue, off };
+export { ref, child, set, update, onValue };
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 const database = getDatabase(installFirebase());
