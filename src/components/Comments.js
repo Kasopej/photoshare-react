@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { makePost } from "../redux/actions";
+import { startMakingComment } from "../redux/actions";
 import { CommentsStateToProps } from "../redux/utils";
 
 function Comments(props) {
@@ -26,6 +26,6 @@ function submitComment(evt, postId, dispatch) {
   evt.preventDefault();
   const comment = evt.target.elements.comment.value;
   if (!comment) return;
-  dispatch(makePost(comment, postId));
+  dispatch(startMakingComment(comment, postId));
   evt.target.elements.comment.value = null;
 }

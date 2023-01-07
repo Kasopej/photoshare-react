@@ -14,9 +14,13 @@ function postsReducer(state = [], action) {
   return state;
 }
 
-function commentsReducer(state = [], action) {
+function commentsReducer(state = {}, action) {
   switch (action.type) {
-    case "MAKE_POST":
+    case "FETCH_COMMENTS":
+      return {
+        ...action.commentsDictionary,
+      };
+    case "MAKE_COMMENT":
       return {
         ...state,
         [action.postId]: [...(state[action.postId] ?? []), action.comment],

@@ -5,12 +5,13 @@ import PostDetails from "./PostDetails";
 import { Link, Outlet, Route, Routes } from "react-router-dom";
 import { connect } from "react-redux";
 import { PostsStateToProps } from "../redux/utils";
-import { startFetchingPosts } from "../redux/actions";
+import { startFetchingPosts, startFetchingComments } from "../redux/actions";
 
 class MainApp extends Component {
   componentDidMount(prevProps, prevState) {
     const { dispatch } = this.props;
     dispatch(startFetchingPosts());
+    dispatch(startFetchingComments());
     console.log("mount", { prevProps, prevState });
   }
   componentDidUpdate(prevProps, prevState) {

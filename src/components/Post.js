@@ -1,7 +1,7 @@
 import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { removePost } from "../redux/actions";
+import { startDeletingPost } from "../redux/actions";
 import { CommentsStateToProps } from "../redux/utils";
 import { Link } from "react-router-dom";
 import withNavigationHOC from "./utilities/WithNavigationHOC";
@@ -25,7 +25,7 @@ class Post extends Component {
           <button
             className="remove-button"
             onClick={() => {
-              dispatch(removePost(post.id));
+              dispatch(startDeletingPost(post.id));
               navigate("/");
             }}
           >
