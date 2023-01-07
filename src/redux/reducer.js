@@ -3,7 +3,7 @@ import { combineReducers } from "redux";
 function postsReducer(state = [], action) {
   switch (action.type) {
     case "FETCH_POSTS":
-      return [...action.posts];
+      return action.posts;
     case "ADD_POST":
       return [...state, action.post];
     case "REMOVE_POST":
@@ -17,9 +17,7 @@ function postsReducer(state = [], action) {
 function commentsReducer(state = {}, action) {
   switch (action.type) {
     case "FETCH_COMMENTS":
-      return {
-        ...action.commentsDictionary,
-      };
+      return action.commentsDictionary;
     case "MAKE_COMMENT":
       return {
         ...state,

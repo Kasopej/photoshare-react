@@ -20,7 +20,7 @@ export function startAddingPost(post) {
 export function startFetchingPosts() {
   return (dispatch) => {
     const cancelPostsListener = onValue(postsFirebaseReference, (snapshot) => {
-      dispatch(fetchPost(Object.values(snapshot.val())));
+      dispatch(fetchPosts(Object.values(snapshot.val())));
       cancelPostsListener();
     });
   };
@@ -61,7 +61,7 @@ export function startFetchingComments() {
   };
 }
 
-export function fetchPost(posts) {
+export function fetchPosts(posts) {
   return {
     type: "FETCH_POSTS",
     posts,
