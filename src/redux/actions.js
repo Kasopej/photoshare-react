@@ -9,36 +9,52 @@ import {
 
 const postsFirebaseReference = ref(database, "posts/");
 const commentsFirebaseReference = ref(database, "comments/");
+
 export function startAddingPost(post) {
   return (dispatch) => {
-    return update(ref(database, "posts/" + post.id), post).then(() => {
-      dispatch(addPost(post));
-    });
+    return update(ref(database, "posts/" + post.id), post)
+      .then(() => {
+        dispatch(addPost(post));
+      })
+      .catch((error) => console.log("startAddingPost", error));
   };
 }
 
 export function startFetchingPosts() {
   return (dispatch) => {
-    const cancelPostsListener = onValue(postsFirebaseReference, (snapshot) => {
-      dispatch(fetchPosts(Object.values(snapshot.val())));
-      cancelPostsListener();
+    return new Promise((resolve) => {
+      const cancelPostsListener = onValue(
+        postsFirebaseReference,
+        (snapshot) => {
+          dispatch(fetchPosts(Object.values(snapshot.val())));
+          cancelPostsListener();
+          resolve();
+        },
+        (error) => {
+          console.log("startFetchingPosts", error);
+        }
+      );
     });
   };
 }
 
 export function startDeletingPost(postId) {
   return (dispatch) => {
-    remove(ref(database, "posts/" + postId)).then(() => {
-      dispatch(removePost(postId));
-    });
+    remove(ref(database, "posts/" + postId))
+      .then(() => {
+        dispatch(removePost(postId));
+      })
+      .catch((error) => console.log("startDeletingPost", error));
   };
 }
 
 export function startMakingComment(comment, postId) {
   return (dispatch) => {
-    return push(ref(database, "comments/" + postId), comment).then(() => {
-      dispatch(makeComment(comment, postId));
-    });
+    return push(ref(database, "comments/" + postId), comment)
+      .then(() => {
+        dispatch(makeComment(comment, postId));
+      })
+      .catch((error) => console.log("startMakingComment", error));
   };
 }
 
@@ -56,11 +72,13 @@ export function startFetchingComments() {
         }
         dispatch(fetchComments(commentsDictionary));
         cancelCommentsListener();
-      }
+      },
+      (error) => console.log(error)
     );
   };
 }
 
+// Synchronous actions
 export function fetchPosts(posts) {
   return {
     type: "FETCH_POSTS",

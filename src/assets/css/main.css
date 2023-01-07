@@ -30,6 +30,9 @@ h1 {
   color: black;
   text-decoration: none;
 }
+h1.not-found {
+  font-size: 8rem;
+}
 h1 a {
   color: black;
   text-decoration: none;

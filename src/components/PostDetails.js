@@ -5,9 +5,13 @@ import { useSelector } from "react-redux";
 
 export default function PostDetails(props) {
   const params = useParams();
+  const { loading } = props;
   let post = useSelector((state) =>
     state.posts.find((post) => post.id === params.id)
   );
+  if (loading) {
+    return <div className="loader">...loading</div>;
+  }
   return (
     <div>
       {post ? (
@@ -15,7 +19,9 @@ export default function PostDetails(props) {
           <Post post={post}></Post>
           <Comments postId={params.id}></Comments>
         </div>
-      ) : null}
+      ) : (
+        <h1 className="not-found">No Post Found</h1>
+      )}
     </div>
   );
 }

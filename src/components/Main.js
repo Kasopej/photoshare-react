@@ -8,17 +8,16 @@ import { PostsStateToProps } from "../redux/utils";
 import { startFetchingPosts, startFetchingComments } from "../redux/actions";
 
 class MainApp extends Component {
+  state = { loading: true };
+
   componentDidMount(prevProps, prevState) {
     const { dispatch } = this.props;
-    dispatch(startFetchingPosts());
+    dispatch(startFetchingPosts()).then(() => {
+      console.log("fetch done");
+      this.setState({ loading: false });
+    });
     dispatch(startFetchingComments());
     console.log("mount", { prevProps, prevState });
-  }
-  componentDidUpdate(prevProps, prevState) {
-    console.log("updated", { prevProps, prevState });
-  }
-  componentWillUnmount(nextProps, nextState) {
-    console.log("destroying", { nextProps, nextState });
   }
   render() {
     const { posts } = this.props;
@@ -48,7 +47,7 @@ class MainApp extends Component {
           <Route path="/addpost" element={<AddPost></AddPost>}></Route>
           <Route
             path="/viewpost/:id"
-            element={<PostDetails></PostDetails>}
+            element={<PostDetails loading={this.state.loading}></PostDetails>}
           ></Route>
         </Route>
       </Routes>
