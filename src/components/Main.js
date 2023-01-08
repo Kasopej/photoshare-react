@@ -27,12 +27,12 @@ class MainApp extends Component {
         <Route
           path="/"
           element={(() => (
-            <div>
+            <main>
               <h1>
                 <Link to="/">PhotoWall</Link>
               </h1>
               <Outlet></Outlet>
-            </div>
+            </main>
           ))()}
         >
           <Route
